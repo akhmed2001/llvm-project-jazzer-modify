@@ -447,8 +447,7 @@ void Fuzzer::RereadOutputCorpus(size_t MaxSize) {
 void Fuzzer::PrintPulseAndReportSlowInput(const uint8_t *Data, size_t Size) {
   auto TimeOfUnit =
       duration_cast<seconds>(UnitStopTime - UnitStartTime).count();
-  if (!(TotalNumberOfRuns & (TotalNumberOfRuns - 1)) &&
-      secondsSinceProcessStartUp() >= 2)
+  if (secondsSinceProcessStartUp()%30 == 0)
     PrintStats("pulse ");
   auto Threshhold =
       static_cast<long>(static_cast<double>(TimeOfLongestUnitInSeconds) * 1.1);
